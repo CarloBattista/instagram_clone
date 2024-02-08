@@ -26,8 +26,11 @@
                 <div class="post__end_region"></div>
             </div>
             <div class="sec_wt section_post_body">
-                <div class="post_profile_image">
+                <div class="post_profile_image" @dblclick="handleTriggerLike">
                     <img class="post_image" :src="post?.post_image" :alt="'Post di ' + post?.profile_name">
+                    <div class="like_heart_animation">
+                        <div class="instagram_heart" :class="{ isLiked: likeHeartAnimationIsVisible }"></div>
+                    </div>
                 </div>
             </div>
             <div class="sec_wt section_post_footer">
@@ -91,9 +94,25 @@ import { useStore } from 'vuex';
 
 export default {
     name: "PostUserComp",
+    data() {
+        return {
+            likeHeartAnimationIsVisible: false,
+        }
+    },
     computed: {
         ...mapGetters(['getPosts']),
     },
+    methods: {
+        handleTriggerLike() {
+            if (this.likeHeartAnimationIsVisible === false) {
+                this.likeHeartAnimationIsVisible = true;
+                
+                setTimeout(() => {
+                    this.likeHeartAnimationIsVisible = false;
+                }, 1000)
+            }
+        }
+    }
 }
 </script>
 
@@ -202,11 +221,66 @@ export default {
 
 .post_profile_image {
     background-color: rgb(38, 38, 38);
+    position: relative;
     width: 100%;
     height: 585px;
     min-height: 470px;
     max-height: 585px;
     border-radius: 6px;
+    cursor: pointer;
+}
+
+.like_heart_animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.instagram_heart {
+    width: 140px;
+    height: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    background: url("/_resources/imgs/heart.png") no-repeat center/contain;
+    opacity: 0;
+    transform: scale(0);
+}
+
+.instagram_heart.isLiked {
+    animation-duration: 1000ms;
+    animation-name: like-heart-animation;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes like-heart-animation {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    15% {
+        opacity: 0.9;
+        transform: scale(1.2);
+    }
+
+    30% {
+        transform: scale(0.95);
+    }
+
+    45%,
+    80% {
+        opacity: 0.9;
+        transform: scale(1);
+    }
 }
 
 .post_image {
@@ -216,7 +290,7 @@ export default {
     object-fit: cover;
 }
 
-.container_cta{
+.container_cta {
     width: 100%;
     height: 40px;
     margin: 4px 0;
@@ -226,30 +300,29 @@ export default {
 }
 
 .cta_start_region,
-.cta_end_region{
+.cta_end_region {
     display: flex;
     align-items: center;
 }
 
-.btn_cta{
+.btn_cta {
     height: 40px;
     padding: 8px;
     aspect-ratio: 1;
     cursor: pointer;
 }
 
-.btn_cta .wrap_icon{
+.btn_cta .wrap_icon {
     height: 100%;
     width: 100%;
 }
 
-.btn_cta .wrap_icon svg{
+.btn_cta .wrap_icon svg {
     color: rgb(245, 245, 245);
     fill: rgb(245, 245, 245);
 }
 
-.btn_cta:hover .wrap_icon svg{
+.btn_cta:hover .wrap_icon svg {
     color: rgb(168, 168, 168);
     fill: rgb(168, 168, 168);
-}
-</style>
+}</style>
