@@ -2,6 +2,12 @@
     <HeaderComp />
     <SideBarComp :isPageHome="true" />
     <NavBarComp :isPageHome="true" />
+    <div class="mainView">
+        <div class="feed_container">
+            <FeedComp />
+            <SuggestedComp />
+        </div>
+    </div>
 </template>
 
 <script>
@@ -11,13 +17,17 @@ import { useStore } from 'vuex';
 import HeaderComp from '../../components/global/HeaderComp.vue';
 import SideBarComp from '../../components/global/SideBarComp.vue';
 import NavBarComp from '../../components/global/NavBarComp.vue';
+import FeedComp from '../../components/feed/FeedComp.vue';
+import SuggestedComp from '../../components/feed/SuggestedComp.vue';
 
 export default {
     name: "HomeView",
     components: {
         HeaderComp,
         SideBarComp,
-        NavBarComp
+        NavBarComp,
+        FeedComp,
+        SuggestedComp
     },
     computed: {
         ...mapGetters(['getProfiles', 'getPosts']),

@@ -52,3 +52,36 @@ h5,
 h6 {
   overflow-wrap: break-word;
 }
+
+.mainView{
+  position: relative;
+  z-index: 1;
+  top: 0;
+  left: 244px;
+  width: calc(100% - 244px);
+  min-height: 1000px;
+  padding-top: 22px;
+}
+
+.feed_container{
+  width: 100%;
+  display: flex;
+  gap: 64px;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* Media Query's */
+@media only screen and (max-width: 1260px) {
+  .mainView{
+    left: 72px;
+    width: calc(100% - 72px);
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .mainView{
+    left: 0;
+    width: 100%;
+  }
+}
