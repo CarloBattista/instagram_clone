@@ -25,7 +25,7 @@
         <div class="row_end"></div>
       </div>
     </div>
-    <FooterComp />
+    <MiniFooterComp />
   </div>
 </template>
 
@@ -33,12 +33,12 @@
 import { mapActions, mapGetters } from 'vuex';
 import { useStore } from 'vuex';
 
-import FooterComp from '../global/FooterComp.vue';
+import MiniFooterComp from '../global/MiniFooterComp.vue';
 
 export default {
   name: "SuggestedComp",
   components: {
-    FooterComp
+    MiniFooterComp
   },
   computed: {
     ...mapGetters(['getProfiles']),

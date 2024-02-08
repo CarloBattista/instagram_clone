@@ -8,6 +8,7 @@
             <SuggestedComp />
         </div>
     </div>
+    <FooterComp />
 </template>
 
 <script>
@@ -19,6 +20,7 @@ import SideBarComp from '../../components/global/SideBarComp.vue';
 import NavBarComp from '../../components/global/NavBarComp.vue';
 import FeedComp from '../../components/feed/FeedComp.vue';
 import SuggestedComp from '../../components/feed/SuggestedComp.vue';
+import FooterComp from '../../components/global/FooterComp.vue';
 
 export default {
     name: "HomeView",
@@ -27,7 +29,8 @@ export default {
         SideBarComp,
         NavBarComp,
         FeedComp,
-        SuggestedComp
+        SuggestedComp,
+        FooterComp
     },
     computed: {
         ...mapGetters(['getProfiles', 'getPosts']),
