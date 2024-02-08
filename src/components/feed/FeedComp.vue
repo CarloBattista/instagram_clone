@@ -1,6 +1,7 @@
 <template>
     <div class="feed_wrap">
         <StoriesComp />
+        <PostUserComp />
     </div>
 </template>
 
@@ -9,18 +10,19 @@ import { mapActions, mapGetters } from 'vuex';
 import { useStore } from 'vuex';
 
 import StoriesComp from '../carousel/StoriesComp.vue';
+import PostUserComp from '../feed/PostUserComp.vue';
 
 export default {
     name: "FeedComp",
     components: {
-        StoriesComp
+        StoriesComp,
+        PostUserComp
     },
 }
 </script>
 
 <style scoped>
 .feed_wrap {
-    background-color: blue;
     width: 100%;
     max-width: 630px;
     min-height: 1000px;

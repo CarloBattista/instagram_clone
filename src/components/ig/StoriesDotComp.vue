@@ -1,7 +1,9 @@
 <template>
     <div class="dot_user_stories">
         <div class="wrap_image_profile">
-            <img class="image_profile" :src="profile?.profile_picture"
+            <img class="image_profile" v-if="profile?.profile_picture" :src="profile?.profile_picture"
+                :alt="'Immagine del profilo di ' + profile?.profile_name">
+            <img class="image_profile" v-else-if="!profile?.profile_picture" src="/_resources/imgs/profile_placeholder.jpg"
                 :alt="'Immagine del profilo di ' + profile?.profile_name">
         </div>
         <div class="wrap_name">
@@ -36,7 +38,7 @@ export default {
     aspect-ratio: 1;
 }
 
-.wrap_image_profile::before{
+.wrap_image_profile::before {
     position: absolute;
     top: -4px;
     left: -4px;
