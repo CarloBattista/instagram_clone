@@ -15,7 +15,7 @@ export default {
   },
   data() {
     return {
-      isLoading: false
+      isLoading: false,
     }
   },
   methods: {
@@ -25,7 +25,7 @@ export default {
 
         setTimeout(() => {
           this.isLoading = false
-        }, 600) // 600ms
+        }, 1000) // 1000ms
       }
     }
   },

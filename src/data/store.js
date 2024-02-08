@@ -48,7 +48,7 @@ export default createStore({
         console.error(e);
       } finally {
         setTimeout(() => {
-          commit("SET_POSTS_LOADING", true);
+          commit("SET_POSTS_LOADING", false);
         }, 1250);
       }
     },

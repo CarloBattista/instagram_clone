@@ -1,5 +1,5 @@
 <template>
-    <span class="_it4vx _72fik" v-if="isLoading"></span>
+    <span class="_it4vx _72fik" :class="{ lba: isLoading }" v-if="isLoading"></span>
 </template>
 
 <script>
@@ -12,25 +12,28 @@ export default {
 </script>
 
 <style scoped>
-._it4vx {
-    height: 3px;
-    background: #27c4f5 -webkit-gradient(linear, left top, right top, from(#27c4f5), color-stop(#a307ba), color-stop(#fd8d32), color-stop(#70c050), to(#27c4f5));
-    background: #27c4f5 -webkit-linear-gradient(left, #27c4f5, #a307ba, #fd8d32, #70c050, #27c4f5);
-    background: #27c4f5 linear-gradient(to right, #27c4f5, #a307ba, #fd8d32, #70c050, #27c4f5);
-    background-size: 500%;
-    -webkit-animation: 2s linear infinite LoadingBarProgress, .5s ease-out LoadingBarEnter;
-    animation: 2s linear infinite LoadingBarProgress, .5s ease-out LoadingBarEnter;
-    -webkit-transform-origin: left;
-    transform-origin: left;
-    width: 100%
-}
-
 ._72fik {
     left: 0;
     position: fixed;
     right: 0;
     top: 0;
     z-index: 9999;
+}
+
+._it4vx {
+    height: 3px;
+    background: #27c4f5 -webkit-gradient(linear, left top, right top, from(#27c4f5), color-stop(#a307ba), color-stop(#fd8d32), color-stop(#70c050), to(#27c4f5));
+    background: #27c4f5 -webkit-linear-gradient(left, #27c4f5, #a307ba, #fd8d32, #70c050, #27c4f5);
+    background: #27c4f5 linear-gradient(to right, #27c4f5, #a307ba, #fd8d32, #70c050, #27c4f5);
+    background-size: 500%;
+    -webkit-transform-origin: left;
+    transform-origin: left;
+    width: 100%
+}
+
+._it4vx.lba{
+    -webkit-animation: 2s linear infinite LoadingBarProgress, .5s ease-out LoadingBarEnter;
+    animation: 2s linear infinite LoadingBarProgress, .5s ease-out LoadingBarEnter;
 }
 
 @keyframes LoadingBarProgress {
