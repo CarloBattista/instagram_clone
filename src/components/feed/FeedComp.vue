@@ -1,6 +1,6 @@
 <template>
     <div class="feed_wrap">
-
+        <StoriesComp />
     </div>
 </template>
 
@@ -8,8 +8,13 @@
 import { mapActions, mapGetters } from 'vuex';
 import { useStore } from 'vuex';
 
+import StoriesComp from '../carousel/StoriesComp.vue';
+
 export default {
-    name: "FeedComp"
+    name: "FeedComp",
+    components: {
+        StoriesComp
+    },
 }
 </script>
 

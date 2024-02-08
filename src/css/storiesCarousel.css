@@ -1,0 +1,41 @@
+.splide{
+    position: relative;
+}
+
+.splide__track{
+    overflow: visible;
+}
+
+.splide__arrow{
+    background-color: rgb(245, 245, 245);
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    height: 20px;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    transform: translateY(-50%);
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.splide__arrow:disabled{
+    opacity: 0;
+    visibility: hidden;
+    cursor: default;
+    user-select: none;
+    pointer-events: none;
+}
+
+.splide__arrow svg{
+    display: none;
+}
+
+.splide__arrow--prev{
+    left: 20px;
+}
+
+.splide__arrow--next{
+    right: 20px;
+}

@@ -81,6 +81,7 @@ h6 {
 
 @media only screen and (max-width: 767px) {
   .mainView{
+    top: 60px;
     left: 0;
     width: 100%;
   }
