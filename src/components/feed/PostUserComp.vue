@@ -106,7 +106,7 @@ export default {
         handleTriggerLike() {
             if (this.likeHeartAnimationIsVisible === false) {
                 this.likeHeartAnimationIsVisible = true;
-                
+
                 setTimeout(() => {
                     this.likeHeartAnimationIsVisible = false;
                 }, 1000)

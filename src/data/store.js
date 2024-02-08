@@ -20,7 +20,6 @@ export default createStore({
       try {
         const res = await axios.get(`${rootState.apiLink}/profiles`);
         commit("SET_PROFILES", res.data);
-        console.log(res);
       } catch (e) {
         console.error(e);
       }
@@ -29,7 +28,6 @@ export default createStore({
       try {
         const res = await axios.get(`${rootState.apiLink}/posts`);
         commit("SET_POST", res.data);
-        console.log(res);
       } catch (e) {
         console.error(e);
       }
