@@ -65,7 +65,7 @@ export default {
 
 .wrap_image_profile.loading{
     background-color: rgb(38, 38, 38);
-    animation: pulse 3s ease 0s infinite;
+    animation: pulse 1.5s ease 0s infinite;
 }
 
 .wrap_image_profile.loading.load_pulse_0{ animation-delay: 0s; }
