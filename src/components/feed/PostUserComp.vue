@@ -15,7 +15,7 @@
                             <h2 class="profile_name">{{ post?.profile_name }}</h2>
                             <div class="postDate">
                                 <span class="separator_dot">•</span>
-                                <span class="date_post">1 g</span>
+                                <span class="date_post">{{ formatDate(post?.date?.date) }}</span>
                             </div>
                         </div>
                         <div class="bottom_info">
@@ -91,12 +91,14 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import { useStore } from 'vuex';
+import { formatDistanceToNow } from 'date-fns';
 
 export default {
     name: "PostUserComp",
     data() {
         return {
             likeHeartAnimationIsVisible: false,
+            currentDate: new Date(), // Assumi che `currentDate` sia la data corrente
         }
     },
     computed: {
@@ -111,6 +113,13 @@ export default {
                     this.likeHeartAnimationIsVisible = false;
                 }, 1000)
             }
+        },
+        formatDate(date) {
+            const postDate = new Date(date);
+            const currentDate = this.currentDate;
+            const diffTime = Math.abs(currentDate - postDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            return `${diffDays} g`;
         }
     }
 }
@@ -325,4 +334,5 @@ export default {
 .btn_cta:hover .wrap_icon svg {
     color: rgb(168, 168, 168);
     fill: rgb(168, 168, 168);
-}</style>
+}
+</style>
