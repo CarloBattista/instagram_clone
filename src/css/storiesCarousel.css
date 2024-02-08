@@ -1,3 +1,7 @@
+.stories_carousel_container.notCarousel .splide .splide__arrows{
+    display: none;
+}
+
 .splide{
     position: relative;
 }

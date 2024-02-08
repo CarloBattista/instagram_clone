@@ -1,6 +1,6 @@
 <template>
     <div class="post_users_container">
-        <div class="row__post_user" v-for="(post, index) in getPosts" :key="index">
+        <div class="row__post_user" v-for="(post, index) in getPosts" :key="index" v-if="!arePostsLoading">
             <div class="sec_wt section_post_heading">
                 <div class="post__start_region">
                     <div class="wrap_image_profile">
@@ -102,7 +102,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters(['getPosts']),
+        ...mapGetters(['getPosts', 'arePostsLoading']),
     },
     methods: {
         handleTriggerLike() {

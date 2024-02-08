@@ -1,8 +1,15 @@
 <template>
-    <div class="stories_carousel_container">
+    <div class="stories_carousel_container" v-if="!areProfilesLoading">
         <Splide :options="options">
             <SplideSlide v-for="(profile, index) in getProfiles" :key="index">
-                <StoriesDotComp :profile="profile" />
+                <StoriesDotComp :profile="profile" :index="index" />
+            </SplideSlide>
+        </Splide>
+    </div>
+    <div class="stories_carousel_container notCarousel" v-if="areProfilesLoading">
+        <Splide :options="options">
+            <SplideSlide v-for="index in 8" :key="index">
+                <StoriesDotComp :index="index" />
             </SplideSlide>
         </Splide>
     </div>
@@ -23,7 +30,7 @@ export default {
         StoriesDotComp
     },
     computed: {
-        ...mapGetters(['getProfiles']),
+        ...mapGetters(['getProfiles', 'areProfilesLoading']),
     },
     setup() {
         const options = {

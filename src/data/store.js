@@ -34,7 +34,9 @@ export default createStore({
       } catch (e) {
         console.error(e);
       } finally {
-        commit("SET_PROFILES_LOADING", false);
+        setTimeout(() => {
+          commit("SET_PROFILES_LOADING", false);
+        }, 1000);
       }
     },
     async fetchPost({ commit, rootState }) {
@@ -45,7 +47,9 @@ export default createStore({
       } catch (e) {
         console.error(e);
       } finally {
-        commit("SET_POSTS_LOADING", false);
+        setTimeout(() => {
+          commit("SET_POSTS_LOADING", true);
+        }, 1250);
       }
     },
   },
