@@ -1,6 +1,6 @@
 <template>
     <div class="post_users_container">
-        <div class="row__post_user" v-for="(post, index) in getPosts" :key="index" v-if="!arePostsLoading && true">
+        <div class="row__post_user with_video_ambient" v-if="true">
             <div class="sec_wt section_post_heading">
                 <div class="post__start_region">
                     <div class="wrap_image_profile">
@@ -12,10 +12,10 @@
                     </div>
                     <div class="wrap_info_post">
                         <div class="top_info">
-                            <h2 class="profile_name">{{ post?.profile_name }}</h2>
+                            <h2 class="profile_name">NetflixIt</h2>
                             <div class="postDate">
                                 <span class="separator_dot">•</span>
-                                <span class="date_post">{{ formatDate(post?.date?.date) }}</span>
+                                <span class="date_post">2g</span>
                             </div>
                         </div>
                         <div class="bottom_info">
@@ -25,12 +25,19 @@
                 </div>
                 <div class="post__end_region"></div>
             </div>
-            <div class="sec_wt section_post_body">
+            <div class="sec_wt section_post_body" ref="videoContainer" @click="handlePlayPause">
                 <div class="post_profile_image" @dblclick="handleTriggerLike">
-                    <img class="post_image" :src="post?.post_image" :alt="'Post di ' + post?.profile_name">
-                    <img class="post_image ambient" :src="post?.post_image" :alt="'Post di ' + post?.profile_name">
+                    <img v-if="false" class="post_image" :src="post?.post_image" :alt="'Post di ' + post?.profile_name">
+                    <video class="post_video" src="/_resources/imgs/testVideo.mp4" ref="video" autoplay muted loop></video>
+                    <video class="post_video ambient" src="/_resources/imgs/testVideo.mp4" ref="videoAmbient" autoplay
+                        muted loop></video>
                     <div class="like_heart_animation">
                         <div class="instagram_heart" :class="{ isLiked: likeHeartAnimationIsVisible }"></div>
+                    </div>
+                    <div class="playPause_container">
+                        <div class="btn_toggle" v-if="!isPlaying">
+                            <div class="play_icon"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -98,7 +105,9 @@ export default {
     data() {
         return {
             likeHeartAnimationIsVisible: false,
+            isPlaying: false,
             currentDate: new Date(), // Assumi che `currentDate` sia la data corrente
+            videoRefs: []
         }
     },
     computed: {
@@ -121,6 +130,44 @@ export default {
             const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
             return `${diffDays} g`;
         },
+        handleIntersection(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Quando l'elemento è visibile, avvia il video
+                    this.$refs.video.play();
+                    this.$refs.videoAmbient.play();
+                    this.isPlaying = true;
+                } else {
+                    // Se l'elemento non è visibile, metti in pausa il video
+                    this.$refs.video.pause();
+                    this.$refs.videoAmbient.pause();
+                    this.isPlaying = false;
+                }
+            });
+        },
+        handlePlayPause() {
+            const video = this.$refs.video;
+            const videoAmbient = this.$refs.videoAmbient;
+            if (video.paused) {
+                video.play();
+                videoAmbient.play();
+                this.isPlaying = true;
+            } else {
+                video.pause();
+                videoAmbient.pause();
+                this.isPlaying = false;
+            }
+        }
+    },
+    mounted() {
+        const options = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5 // Cambia questo valore a seconda di quando vuoi far partire il video
+        };
+
+        const observer = new IntersectionObserver(this.handleIntersection, options);
+        observer.observe(this.$refs.videoContainer);
     },
 }
 </script>
@@ -325,6 +372,25 @@ export default {
     width: 100%;
     height: 100%;
     filter: blur(135px) brightness(.4);
+}
+
+.post_video {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    object-fit: contain;
+}
+
+.post_video.ambient {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: blur(135px) brightness(.7);
 }
 
 .container_cta {
